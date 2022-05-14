@@ -43,7 +43,7 @@ play =True
 while play:
     # move snake
     screen.update()
-    time.sleep(0.05)
+    time.sleep(0.1)
     snake.move()
     score=0
 
@@ -60,10 +60,8 @@ while play:
         scoreboard.gameOver()
     
     # detect collition with tail or other segments === game over
-    for segment in snake.segments:
-        if segment == snake.head:
-            pass
-        elif snake.head.distance(segment)<5:
+    for segment in snake.segments[1:]:
+        if snake.head.distance(segment)<5:
             play=False
             scoreboard.gameOver()
     
