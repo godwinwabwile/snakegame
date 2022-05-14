@@ -1,7 +1,7 @@
 '''snake class that is inherits from turtle'''
 from turtle import Turtle
 POSITIONS=[(0,0),(-20,0),(-40,0),(-60,0)]
-MOVE_DIST=20
+MOVE_DIST=10
 # directions
 UP= 90
 DOWN=270
@@ -16,11 +16,19 @@ class Snake:
 
     def create_snake(self):
         for position in POSITIONS:
-            segment =Turtle("square")
-            segment.color("black")
-            segment.penup()
-            segment.goto(position)
-            self.segments.append(segment)
+            self.addsection(position)
+            
+    
+    def addsection(self, position):
+        segment =Turtle("square")
+        segment.color("black")
+        segment.penup()
+        segment.shapesize(stretch_len=0.5, stretch_wid=0.5)
+        segment.goto(position)
+        self.segments.append(segment)
+
+    def extendSnake(self):
+        self.addsection(self.segments[-1].position())
 
     def move(self):
         for seg_num in range(len(self.segments)-1,0,-1):
